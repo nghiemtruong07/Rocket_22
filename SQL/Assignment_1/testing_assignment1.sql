@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `testing_system_assignment_1` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `testing_system_assignment_1`;
+CREATE DATABASE  IF NOT EXISTS `testing_system_assignment1` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `testing_system_assignment1`;
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: testing_system_assignment_1
+-- Host: 127.0.0.1    Database: testing_system_assignment1
 -- ------------------------------------------------------
 -- Server version	8.0.27
 
@@ -25,14 +25,14 @@ DROP TABLE IF EXISTS `account`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `account` (
-  `accountID` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) DEFAULT NULL,
-  `fullName` varchar(255) DEFAULT NULL,
-  `departmentID` int NOT NULL,
-  `positionID` int NOT NULL,
-  `createDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`accountID`,`departmentID`,`positionID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `AccountID` int NOT NULL AUTO_INCREMENT,
+  `Email` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `FullName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `DepartmentID` int NOT NULL,
+  `PositionID` int NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`AccountID`,`DepartmentID`,`PositionID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,6 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (1,'a','a',1,2,'2022-03-01 16:41:29'),(2,'b','c',1,3,'2022-03-01 16:41:54');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,13 +53,13 @@ DROP TABLE IF EXISTS `answer`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `answer` (
   `AnswerID` int NOT NULL AUTO_INCREMENT,
-  `Content` varchar(255) DEFAULT NULL,
+  `Content` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `QuestionID` int DEFAULT NULL,
-  `isCorrect` enum('True','False') DEFAULT NULL,
+  `isCorrect` enum('True','False') COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`AnswerID`),
   KEY `QuestionID` (`QuestionID`),
   CONSTRAINT `answer_ibfk_1` FOREIGN KEY (`QuestionID`) REFERENCES `question` (`QuestionID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,9 +80,9 @@ DROP TABLE IF EXISTS `categoryquestion`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categoryquestion` (
   `CategoryID` int NOT NULL AUTO_INCREMENT,
-  `CategoryName` varchar(255) DEFAULT NULL,
+  `CategoryName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`CategoryID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,9 +103,9 @@ DROP TABLE IF EXISTS `department`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `department` (
   `DepartmentID` int NOT NULL AUTO_INCREMENT,
-  `DepartmentName` varchar(255) DEFAULT NULL,
+  `DepartmentName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`DepartmentID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,14 +126,14 @@ DROP TABLE IF EXISTS `exam`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `exam` (
   `ExamID` int NOT NULL AUTO_INCREMENT,
-  `code` varchar(10) DEFAULT NULL,
-  `title` varchar(50) DEFAULT NULL,
+  `code` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `title` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `CategoryID` int DEFAULT NULL,
   `duration` float DEFAULT NULL,
   `creatorID` int DEFAULT NULL,
   `createDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ExamID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +156,7 @@ CREATE TABLE `examquestion` (
   `ExamID` int NOT NULL,
   `QuestionID` int DEFAULT NULL,
   PRIMARY KEY (`ExamID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,11 +177,11 @@ DROP TABLE IF EXISTS `group`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `group` (
   `GroupID` int NOT NULL AUTO_INCREMENT,
-  `GroupName` varchar(255) DEFAULT NULL,
+  `GroupName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `CreatorID` int NOT NULL,
   `CreateDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`GroupID`,`CreatorID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,7 +205,7 @@ CREATE TABLE `groupaccount` (
   `AccountID` int DEFAULT NULL,
   `joinDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`GroupID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,9 +226,9 @@ DROP TABLE IF EXISTS `position`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `position` (
   `PositionID` int NOT NULL AUTO_INCREMENT,
-  `PositionName` enum('Dev','Test','Scrum Master','PM') DEFAULT NULL,
+  `PositionName` enum('Dev','Test','Scrum Master','PM') COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`PositionID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -250,7 +249,7 @@ DROP TABLE IF EXISTS `question`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `question` (
   `QuestionID` int NOT NULL AUTO_INCREMENT,
-  `content` varchar(255) DEFAULT NULL,
+  `content` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `CategoryID` int DEFAULT NULL,
   `TypeID` int DEFAULT NULL,
   `CreateID` int NOT NULL,
@@ -260,7 +259,7 @@ CREATE TABLE `question` (
   KEY `TypeID` (`TypeID`),
   CONSTRAINT `question_ibfk_1` FOREIGN KEY (`CategoryID`) REFERENCES `categoryquestion` (`CategoryID`),
   CONSTRAINT `question_ibfk_2` FOREIGN KEY (`TypeID`) REFERENCES `typequestion` (`TypeID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,9 +280,9 @@ DROP TABLE IF EXISTS `typequestion`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `typequestion` (
   `TypeID` int NOT NULL AUTO_INCREMENT,
-  `TypeName` enum('Easy','Multiple-Choice') DEFAULT NULL,
+  `TypeName` enum('Easy','Multiple-Choice') COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`TypeID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -296,11 +295,11 @@ LOCK TABLES `typequestion` WRITE;
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'testing_system_assignment_1'
+-- Dumping events for database 'testing_system_assignment1'
 --
 
 --
--- Dumping routines for database 'testing_system_assignment_1'
+-- Dumping routines for database 'testing_system_assignment1'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -312,4 +311,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-02  9:02:34
+-- Dump completed on 2022-03-02  9:28:41
